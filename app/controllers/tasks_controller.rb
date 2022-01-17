@@ -8,6 +8,11 @@ class TasksController < ApplicationController
   end
   
   def create
-    p params
+    p task_params
+  end
+  
+  private
+  def task_params
+    params.require(:task).permit(:title)
   end
 end
