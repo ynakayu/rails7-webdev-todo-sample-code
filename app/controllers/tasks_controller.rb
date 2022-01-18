@@ -37,25 +37,13 @@ class TasksController < ApplicationController
   end
   
   def toggle
-    p 'a'
     @task = Task.find(params[:id])
-    p 'b'
-    # @task.update(completed: !@task.completed)
-    p  @task.completed
-    p !@task.completed
-    # @task.update(task_params)
-    if @task.update(completed: !@task.completed)
-      p 'OK'
-    else
-      p 'NG'
-    end
-    p 'c'
+    @task.update(completed: !@task.completed)
     render turbo_stream: turbo_stream.replace(
       @task,
       partial: 'completed',
       locals: { task: @task }
       )
-    p 'd'
   end
   
   private
